@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8" />
+
+    <title>{{ site.title }}</title>
+</head>
+<body>
+    <h1>{{ site.name }}</h1>
+
+    {% for post in query %}
+        <div class="{{ post.css_class }}">
+            <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+
+            {{ post.excerpt }}
+        </div>
+    {% else %}
+        <p>There are no posts yet.</p>
+    {% endfor %}
+</body>
+</html>

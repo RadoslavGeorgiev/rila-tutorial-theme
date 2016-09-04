@@ -1,1 +1,2 @@
-Main File
+<?php
+rila_view( 'index' );
