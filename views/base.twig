@@ -8,9 +8,29 @@
 </head>
 
 <body {{ body_class() }}>
-	{% block content %}
-		This page has no content.
-	{% endblock %}
+	<header>
+		<a href="{{ site.url }}">
+			<strong>{{ site.name|e }}</strong>
+
+			{% if site.description %}
+				<span>{{ site.description|e }}</span>
+			{% endif %}
+		</a>
+
+		{{ site.menu( 'main-menu' ) }}
+	</header>
+
+	<section id="content">
+		{% block content %}
+			This page has no content.
+		{% endblock %}
+	</section>
+
+	<footer id="footer">
+		<p class="copy">&copy; {{ now.format( 'Y' ) }} {{ site.name|e }}</p>
+
+		{{ site.menu( 'footer-menu' ) }}
+	</footer>
 
     {{ wp_footer() }}
 </body>

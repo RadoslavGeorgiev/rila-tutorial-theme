@@ -5,6 +5,8 @@ if( is_front_page() ) {
     $title = get_the_archive_title();
 }
 
-rila_view( 'index', array(
-    'title' => $title
-));
+$context = array(
+	'title' => $title
+);
+
+rila_view( 'index', $context )->render();
