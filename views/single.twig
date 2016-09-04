@@ -1,7 +1,17 @@
 {% extends 'base.twig' %}
 
 {% block content %}
-	<h1>{{ post.title }}</h1>
+	<div class="{{ post.css_class }} type-{{ post.type }}" id="post-{{ post.id }}">
+		<h1>{{ post.title }}</h1>
 
-	{{ post.content }}
+		{{ post.image.featured }}
+
+		<p class="meta">
+			Posted by <a href="{{ post.author.url }}">{{ post.author.name }}</a>
+			at {{ post.date.time }}
+			{{ post.category ? 'in ' ~ post.category : '' }}.
+		</p>
+
+		{{ post.content }}
+	</div>
 {% endblock %}
