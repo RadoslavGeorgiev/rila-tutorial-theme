@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html {{ language_attributes() }}>
+<head>
+	<meta charset="{{ site.charset }}">
+	<link rel="pingback" href="{{ site.pingback_url }}">
+
+	{{ wp_head() }}
+</head>
+
+<body {{ body_class() }}>
+	{% block content %}
+		This page has no content.
+	{% endblock %}
+
+    {{ wp_footer() }}
+</body>
+</html>
