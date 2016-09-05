@@ -21,9 +21,15 @@
 	</header>
 
 	<section id="content">
-		{% block content %}
-			This page has no content.
-		{% endblock %}
+		<div class="main-content">
+			{% block content %}
+				This page has no content.
+			{% endblock %}
+		</div>
+
+		<ul class="sidebar">
+			{{ sidebar( 'main-sidebar' ) }}
+		</ul>
 	</section>
 
 	<footer id="footer">

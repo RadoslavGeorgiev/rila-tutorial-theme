@@ -57,3 +57,22 @@ add_action( 'register_acf_groups', 'theme_acf_fields' );
 function theme_acf_fields() {
 	require_once THEME_DIR . 'lib/acf-fields.php';
 }
+
+/**
+ * Register sidebars and widgets in this function.
+ */
+add_action( 'widgets_init', 'theme_widgets' );
+function theme_widgets() {
+	register_sidebar( array(
+		'id'            => 'main-sidebar',
+		'name'          => 'Main Sidebar',
+		'before_widget' => '<li id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</li>',
+		'before_title'  => '<h2 class="widgettitle">',
+		'after_title'   => '</h2>'
+	));
+
+	require_once THEME_DIR . 'lib/Widget/WYSIWYG.php';
+
+	register_widget( Theme\Widget\WYSIWYG::class );
+}
