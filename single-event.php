@@ -1,0 +1,1 @@
+<?php rila_view( 'single-event' )->render() ?>
