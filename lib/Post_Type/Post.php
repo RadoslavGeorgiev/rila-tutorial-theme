@@ -1,5 +1,5 @@
 <?php
-namespace Theme;
+namespace Theme\Post_Type;
 use Rila\Post_Type;
 
 /**

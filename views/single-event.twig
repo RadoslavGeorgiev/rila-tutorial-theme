@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="{{ post.css_class }} type-{{ post.type }}" id="post-{{ post.id }}">
-	<h1>{{ post.title }}</h1>
+	<h1 style="color: {{ post.category.color }}">{{ post.title }}</h1>
 
 	<p class="meta">Starts on {{ post.start }} and ends on {{ post.end }} at {{ post.location }}.</p>
 

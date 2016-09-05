@@ -1,5 +1,5 @@
 <?php
-namespace Theme;
+namespace Theme\Post_Type;
 use Rila\Post_Type;
 
 /**
@@ -60,9 +60,10 @@ class Event extends Post_Type {
 
 		# Let 'start' point to 'event_start' and 'end' to 'event_end'
 		$this->translate(array(
-			'start' => 'event_start',
-			'end'   => 'event_end',
-			'text'  => 'event_text'
+			'start'    => 'event_start',
+			'end'      => 'event_end',
+			'text'     => 'event_text',
+			'category' => 'event_category'
 		));
 
 		# Let the framework know that both fields contain dates.

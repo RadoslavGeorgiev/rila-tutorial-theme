@@ -18,9 +18,11 @@ function theme_setup_theme() {
 	# Include the classes for post types and events that we created
 	require_once THEME_DIR . 'lib/Post_Type/Post.php';
 	require_once THEME_DIR . 'lib/Post_Type/Event.php';
+	require_once THEME_DIR . 'lib/Taxonomy/Event_Category.php';
 
 	# Register the newly created event post type
-	Theme\Event::register();
+	Theme\Post_Type\Event::register();
+	Theme\Taxonomy\Event_Category::register();
 }
 
 /**
@@ -34,7 +36,7 @@ add_action( 'rila.post_class', 'theme_post_class', 10, 2 );
 function theme_post_class( $classname, $post ) {
 	if( 'post' == $post->post_type ) {
 		# For normal posts, we need the Theme_Post class.
-		return 'Theme\\Post';
+		return 'Theme\\Post_Type\\Post';
 	}
 
 	return $classname;
