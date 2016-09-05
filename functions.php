@@ -41,3 +41,14 @@ function theme_post_class( $classname, $post ) {
 
 	return $classname;
 }
+
+/**
+ * Add custom fields at the appropriate action.
+ *
+ * By using this hook, we ensure that even if the helper or ACF
+ * are not active, our theme will not throw a fatal error and block the site.
+ */
+add_action( 'register_acf_groups', 'theme_acf_fields' );
+function theme_acf_fields() {
+	require_once THEME_DIR . 'lib/acf-fields.php';
+}

@@ -10,7 +10,7 @@
 <body {{ body_class() }}>
 	<header>
 		<a href="{{ site.url }}">
-			<strong>{{ site.name|e }}</strong>
+			<strong>{{ ( site.logo_text ?? site.name )|e }}</strong>
 
 			{% if site.description %}
 				<span>{{ site.description|e }}</span>
@@ -28,6 +28,18 @@
 
 	<footer id="footer">
 		<p class="copy">&copy; {{ now.format( 'Y' ) }} {{ site.name|e }}</p>
+
+		{% if site.social_networks %}
+		<ul class="socials">
+			{% for network in site.social_networks %}
+			<li>
+				<a href="{{ network.url }}">
+					<img src="{{ theme.url ~ 'images/' ~ network.network ~ '.svg' }}" alt="{{ network.network|ucwords }}" />
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
 
 		{{ site.menu( 'footer-menu' ) }}
 	</footer>
