@@ -1,0 +1,25 @@
+{% for post in query %}
+	<div class="{{ post.css_class }}">
+		<h2><a href="{{ post.url }}">{{ post.title|e }}</a></h2>
+
+		{{ post.excerpt }}
+	</div>
+{% else %}
+	<p>There are no posts yet.</p>
+{% endfor %}
+
+<div class="pagination">
+	{% if query.pagination.prev %}
+		<a href="{{ query.pagination.prev.url }}">
+			<img src="{{ theme.url }}images/arrow-prev.png" alt="Previous Page" />
+		</a>
+	{% endif %}
+
+	{{ query.pagination }}
+
+	{% if query.pagination.next %}
+		<a href="{{ query.pagination.next.url }}">
+			<img src="{{ theme.url }}images/arrow-next.png" alt="Next Page" />
+		</a>
+	{% endif %}
+</div>
