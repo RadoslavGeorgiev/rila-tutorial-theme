@@ -17,8 +17,11 @@ function theme_setup_theme() {
 
 	# Include the classes for post types and events that we created
 	require_once THEME_DIR . 'lib/Post_Type/Post.php';
+	require_once THEME_DIR . 'lib/Post_Type/Page.php';
 	require_once THEME_DIR . 'lib/Post_Type/Event.php';
 	require_once THEME_DIR . 'lib/Taxonomy/Event_Category.php';
+	require_once THEME_DIR . 'lib/Block/Text.php';
+	require_once THEME_DIR . 'lib/Block/Gallery.php';
 
 	# Register the newly created event post type
 	Theme\Post_Type\Event::register();
@@ -37,6 +40,8 @@ function theme_post_class( $classname, $post ) {
 	if( 'post' == $post->post_type ) {
 		# For normal posts, we need the Theme_Post class.
 		return 'Theme\\Post_Type\\Post';
+	} elseif( 'page' == $post->post_type ) {
+		return 'Theme\\Post_Type\\Page';
 	}
 
 	return $classname;

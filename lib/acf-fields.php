@@ -51,3 +51,25 @@ ACF_Group::create( 'theme_options', 'Theme Options' )
 		 )
 	))
 	->register();
+
+/**
+ * Adds a content builder field to all pages.
+ */
+$blocks = array(
+	Theme\Block\Text::class,
+	Theme\Block\Gallery::class
+);
+
+ACF_Group::create( 'page_blocks', 'Page Blocks' )
+	->add_location_rule( 'post_type', 'page' )
+	->set_attr( 'hide_on_screen', array( 'the_content' ) )
+	->set_attr( 'layout', 'seamless' )
+	->add_fields(array(
+		array(
+		 	'type'    => 'flexible_content',
+		 	'label'   => '',
+		 	'name'    => 'content_blocks',
+			'layouts' => Rila\Builder::generate( $blocks )
+		 )
+	))
+	->register();
