@@ -7,6 +7,27 @@
 define( 'THEME_DIR', __DIR__ . '/' );
 
 /**
+ * Adds an autoloader for classes.
+ *
+ * Whenever a class is not available for PHP, this function will be executed
+ * and it should try and locate that class as a last step before PHP dies.
+ *
+ * @param string $classname The name of the missing class.
+ */
+spl_autoload_register( 'theme_autoload_class' );
+function theme_autoload_class( $classname ) {
+	if( 0 !== stripos( $classname, 'Theme\\' ) )
+		return;
+
+	$classname = str_replace( 'Theme\\', '', $classname );
+	$classname = THEME_DIR . 'lib/' . $classname . '.php';
+
+	if( file_exists( $classname ) ) {
+		require_once $classname;
+	}
+}
+
+/**
  * Perform normal theme actions.
  */
 add_action( 'after_setup_theme', 'theme_setup_theme' );
@@ -14,14 +35,6 @@ function theme_setup_theme() {
     add_theme_support( 'title-tag' );
 
 	add_image_size( 'featured', 900 );
-
-	# Include the classes for post types and events that we created
-	require_once THEME_DIR . 'lib/Post_Type/Post.php';
-	require_once THEME_DIR . 'lib/Post_Type/Page.php';
-	require_once THEME_DIR . 'lib/Post_Type/Event.php';
-	require_once THEME_DIR . 'lib/Taxonomy/Event_Category.php';
-	require_once THEME_DIR . 'lib/Block/Text.php';
-	require_once THEME_DIR . 'lib/Block/Gallery.php';
 
 	# Register the newly created event post type
 	Theme\Post_Type\Event::register();
@@ -71,8 +84,6 @@ function theme_widgets() {
 		'before_title'  => '<h2 class="widgettitle">',
 		'after_title'   => '</h2>'
 	));
-
-	require_once THEME_DIR . 'lib/Widget/WYSIWYG.php';
 
 	register_widget( Theme\Widget\WYSIWYG::class );
 }
